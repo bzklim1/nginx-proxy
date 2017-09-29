@@ -12,7 +12,8 @@ RUN apt-get update \
 
 # Configure Nginx and apply fix for very long server names
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf \
- && sed -i 's/worker_processes  1/worker_processes  auto/' /etc/nginx/nginx.conf
+ && sed -i 's/worker_processes  1/worker_processes  auto/' /etc/nginx/nginx.conf \
+ && rm -f /etc/nginx/sites-available/default
 
 # Install Forego
 ADD https://github.com/jwilder/forego/releases/download/v0.16.1/forego /usr/local/bin/forego
@@ -26,6 +27,7 @@ RUN wget https://github.com/jwilder/docker-gen/releases/download/$DOCKER_GEN_VER
 
 COPY . /app/
 WORKDIR /app/
+COPY default.conf /etc/nginx/conf.d/default.conf
 
 ENV DOCKER_HOST unix:///tmp/docker.sock
 
