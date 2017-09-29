@@ -30,7 +30,7 @@ WORKDIR /app/
 COPY default.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 8080
-VOLUME ["/etc/nginx/certs", "/etc/nginx/dhparam"]
+
 
 ENTRYPOINT ["/app/docker-entrypoint.sh"]
 CMD ["forego", "start", "-r"]
