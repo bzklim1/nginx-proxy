@@ -29,8 +29,7 @@ COPY . /app/
 WORKDIR /app/
 COPY default.conf /etc/nginx/conf.d/default.conf
 
-ENV DOCKER_HOST unix:///tmp/docker.sock
-
+EXPOSE 8080
 VOLUME ["/etc/nginx/certs", "/etc/nginx/dhparam"]
 
 ENTRYPOINT ["/app/docker-entrypoint.sh"]
